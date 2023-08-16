@@ -2,7 +2,7 @@ package com.seblacko.rag.controllers;
 
 
 import com.seblacko.rag.entities.Book;
-import com.seblacko.rag.util.HibernateUtil;
+import com.seblacko.rag.util.hibernate.InitialSessionFactory;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
@@ -21,7 +21,7 @@ public class BookEntry {
         book.setName("lor");
         book.setAuthor("ragjn2");
 
-        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+        SessionFactory sessionFactory = InitialSessionFactory.getSessionFactory();
         Session session = sessionFactory.openSession();
 
         Transaction transaction = session.getTransaction();

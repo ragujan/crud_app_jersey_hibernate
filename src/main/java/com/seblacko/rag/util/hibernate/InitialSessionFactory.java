@@ -1,10 +1,9 @@
-package com.seblacko.rag.util;
+package com.seblacko.rag.util.hibernate;
 
-import org.hibernate.HibernateException;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-public class HibernateUtil {
+public class InitialSessionFactory {
     private static SessionFactory sessionFactory  = getSessionFactory();
 
     public static SessionFactory buildSessionFactory(){

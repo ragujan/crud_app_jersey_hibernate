@@ -11,8 +11,7 @@ public class Department {
     @Column(name = "department_name")
     private String name;
 
-    public Department(Integer id, String name) {
-        this.id = id;
+    public Department(String name) {
         this.name = name;
     }
 

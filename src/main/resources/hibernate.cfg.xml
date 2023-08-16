@@ -1,7 +1,7 @@
 <hibernate-configuration>
     <session-factory>
         <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
-        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/web_2_test_1</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/crud_app_assignment</property>
         <property name="hibernate.connection.username">root</property>
         <property name="hibernate.connection.password">ragJN100Mania</property>
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
@@ -9,5 +9,6 @@
         <property name="hibernate.show_sql">true</property>
         <property name="current_session_context_class">thread</property>
         <mapping class="com.seblacko.rag.entities.Book"/>
+        <mapping class="com.seblacko.rag.entities.Department"/>
     </session-factory>
 </hibernate-configuration>
