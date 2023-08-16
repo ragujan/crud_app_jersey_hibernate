@@ -12,8 +12,8 @@
 </head>
 <body>
 <h1>Add a department</h1>
-<input type="text" id="department_name">
-<button id="add_btn">Add Department</button>
-<script src="scripts/department_entry.js"></script>
+<input  type="text" id="department_name">
+<button id="add">add department</button>
+<script src="scripts/department_entry2.js"></script>
 </body>
 </html>

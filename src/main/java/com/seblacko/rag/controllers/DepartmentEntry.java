@@ -1,11 +1,8 @@
 package com.seblacko.rag.controllers;
 
-import jakarta.inject.Inject;
-import jakarta.servlet.ServletContext;
-import jakarta.servlet.http.HttpServletRequest;
+import com.seblacko.rag.util.StringInputValidator;
 import jakarta.ws.rs.*;
-import jakarta.ws.rs.core.Context;
-import jakarta.ws.rs.core.MediaType;
+import org.glassfish.jersey.media.multipart.FormDataParam;
 
 import java.util.Enumeration;
 
@@ -13,10 +10,14 @@ import java.util.Enumeration;
 public class DepartmentEntry {
 
     @POST
-    @Consumes(MediaType.APPLICATION_JSON)
-    public String addDepartment(Res department) {
-        System.out.println("Received department: " + department.getName());
-        return "ok";
+    public String addDepartment(@FormDataParam("departmentName") String departmentName) {
+        if(!StringInputValidator.isValid(departmentName)){
+           return "invalid input";
+        }else{
+            System.out.println("Received department name dep2 : " + departmentName);
+            return "ok";
+        }
+
     }
 
     @GET
