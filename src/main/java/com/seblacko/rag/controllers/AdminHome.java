@@ -31,4 +31,10 @@ public class AdminHome {
         System.out.println("admin_enter_department");
         return new Viewable("/enter_department");
     }
+    @Path("/view_employees")
+    @GET
+    public Viewable view_employees(){
+        System.out.println("view_employees");
+        return new Viewable("/view_employees");
+    }
 }

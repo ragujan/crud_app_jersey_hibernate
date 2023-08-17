@@ -2,6 +2,9 @@ package com.seblacko.rag.entities;
 
 import jakarta.persistence.*;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
 @Table(name = "employee")
 public class Employee {
@@ -17,13 +20,46 @@ public class Employee {
     @Column(name = "hire_date")
     private String hiredDate;
 
-    @Column(name = "department_id")
-    private Integer departmentId;
 
-    @Column(name = "employee_position_id")
-    private Integer employeePositionId;
+//    @Column(name = "employee_position_id")
+//    private Integer employeePositionId;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "employee")
+    private Set<EmployeeSalary> employeeSalary = new HashSet<>();
+    //department entity
+    @ManyToOne
+    @JoinColumn(name = "department_id")
+    private Department department;
+    //employee position entity
+    @ManyToOne
+    @JoinColumn(name = "employee_position_id")
+    private EmployeePosition employeePosition;
 
     public Employee() {
+    }
+
+    public EmployeePosition getEmployeePosition() {
+        return employeePosition;
+    }
+
+    public void setEmployeePosition(EmployeePosition employeePosition) {
+        this.employeePosition = employeePosition;
+    }
+
+    public Set<EmployeeSalary> getEmployeeSalary() {
+        return employeeSalary;
+    }
+
+    public void setEmployeeSalary(Set<EmployeeSalary> employeeSalary) {
+        this.employeeSalary = employeeSalary;
+    }
+
+    public Department getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(Department department) {
+        this.department = department;
     }
 
     public Long getId() {
@@ -58,19 +94,11 @@ public class Employee {
         this.hiredDate = hiredDate;
     }
 
-    public Integer getDepartmentId() {
-        return departmentId;
-    }
-
-    public void setDepartmentId(Integer departmentId) {
-        this.departmentId = departmentId;
-    }
-
-    public Integer getEmployeePositionId() {
-        return employeePositionId;
-    }
-
-    public void setEmployeePositionId(Integer employeePositionId) {
-        this.employeePositionId = employeePositionId;
-    }
+//    public Integer getEmployeePositionId() {
+//        return employeePositionId;
+//    }
+//
+//    public void setEmployeePositionId(Integer employeePositionId) {
+//        this.employeePositionId = employeePositionId;
+//    }
 }

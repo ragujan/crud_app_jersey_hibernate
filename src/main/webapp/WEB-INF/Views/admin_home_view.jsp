@@ -16,5 +16,7 @@
 <a href="${BASE_URL}enter_department">Enter Department</a>
 <br>
 <a href="${BASE_URL}enter_employee_position">Enter Employee Position</a>
+<br>
+<a href="${BASE_URL}view_employees">View Employess</a>
 </body>
 </html>

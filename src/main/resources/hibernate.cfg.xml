@@ -13,6 +13,7 @@
         <mapping class="com.seblacko.rag.entities.Department"/>
         <mapping class="com.seblacko.rag.entities.EmployeePosition"/>
         <mapping class="com.seblacko.rag.entities.Employee"/>
+        <mapping class="com.seblacko.rag.entities.EmployeeSalary"/>
 
     </session-factory>
 </hibernate-configuration>

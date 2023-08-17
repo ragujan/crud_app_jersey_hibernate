@@ -2,6 +2,9 @@ package com.seblacko.rag.entities;
 
 import jakarta.persistence.*;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
 @Table(name = "employee_position")
 public class EmployeePosition {
@@ -12,7 +15,19 @@ public class EmployeePosition {
     @Column(name = "position_name")
     private String positionName;
 
+    @OneToMany(mappedBy = "employeePosition")
+    private Set<Employee> employees = new HashSet<>();
+
+
     public EmployeePosition() {
+    }
+
+    public Set<Employee> getEmployees() {
+        return employees;
+    }
+
+    public void setEmployees(Set<Employee> employees) {
+        this.employees = employees;
     }
 
     public EmployeePosition(String positionName) {
