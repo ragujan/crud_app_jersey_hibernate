@@ -18,28 +18,28 @@ public class BookEntry {
     @Produces(MediaType.TEXT_HTML)
     public String enter(){
 
-        Book book = new Book();
-        book.setName("lor");
-        book.setAuthor("ragjn2");
-        EmployeePosition employeePosition = new EmployeePosition();
-        employeePosition.setPositionName("bro rag");
-
-        SessionFactory sessionFactory = InitialSessionFactory.getSessionFactory();
-        Session session = sessionFactory.openSession();
-
-        Transaction transaction = session.getTransaction();
-
-        try {
-            transaction.begin();
-            session.persist(book);
-            session.persist(employeePosition);
-            transaction.commit();
-        }finally {
-            if(transaction.isActive()){
-                transaction.rollback();
-            }
-
-        }
+//        Book book = new Book();
+//        book.setName("lor");
+//        book.setAuthor("ragjn2");
+//        EmployeePosition employeePosition = new EmployeePosition();
+//        employeePosition.setPositionName("bro rag");
+//
+//        SessionFactory sessionFactory = InitialSessionFactory.getSessionFactory();
+//        Session session = sessionFactory.openSession();
+//
+//        Transaction transaction = session.getTransaction();
+//
+//        try {
+//            transaction.begin();
+//            session.persist(book);
+//            session.persist(employeePosition);
+//            transaction.commit();
+//        }finally {
+//            if(transaction.isActive()){
+//                transaction.rollback();
+//            }
+//
+//        }
         return "Ok";
     }
 

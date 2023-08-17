@@ -93,6 +93,12 @@ const loadEmployeePositionNames = () => __awaiter(void 0, void 0, void 0, functi
     }
 });
 window.addEventListener('load', () => __awaiter(void 0, void 0, void 0, function* () {
-    yield loadDepartmentNames();
-    yield loadEmployeePositionNames();
+    if (document.getElementById("dep_names") && document.getElementById("emp_pos_names")) {
+        console.log("elments are found");
+        yield loadEmployeePositionNames();
+        yield loadDepartmentNames();
+    }
+    else {
+        console.log("normal");
+    }
 }));

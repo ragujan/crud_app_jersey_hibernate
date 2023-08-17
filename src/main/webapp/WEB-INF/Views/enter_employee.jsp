@@ -31,6 +31,6 @@
 <button id="add_employee">add employee</button>
 
 <script>var exports = {};</script>
-<script src="scripts/entry.js"></script>
+<script src="${BASE_URL}scripts/entry.js"></script>
 </body>
 </html>

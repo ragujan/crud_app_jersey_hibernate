@@ -95,8 +95,13 @@ const loadEmployeePositionNames = async () => {
 }
 
 window.addEventListener('load', async () => {
-    await loadDepartmentNames();
-    await loadEmployeePositionNames();
+    if(document.getElementById("dep_names") && document.getElementById("emp_pos_names")){
+        console.log("elments are found")
+        await loadEmployeePositionNames();
+        await loadDepartmentNames();
+    }else {
+        console.log("normal")
+    }
 
 })
 export {}

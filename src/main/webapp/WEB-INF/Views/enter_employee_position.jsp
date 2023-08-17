@@ -15,6 +15,6 @@
 <input  type="text" id="employee_position_name">
 <button id="add_employee_position_name">add employee position</button>
 <script>var exports = {};</script>
-<script  src="scripts/entry.js"></script>
+<script src="${BASE_URL}scripts/entry.js"></script>
 </body>
 </html>

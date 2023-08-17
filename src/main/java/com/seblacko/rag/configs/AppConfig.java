@@ -12,6 +12,6 @@ public class AppConfig extends ResourceConfig {
 //        register(MultiPartFeature.class);
         register(DependencyBinder.class);
         register(JspMvcFeature.class);
-        property(JspMvcFeature.TEMPLATE_BASE_PATH,"WEB-INF/View");
+        property(JspMvcFeature.TEMPLATE_BASE_PATH,"/WEB-INF/Views");
     }
 }
