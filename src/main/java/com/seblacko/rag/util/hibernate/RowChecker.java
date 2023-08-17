@@ -7,6 +7,7 @@ import org.hibernate.query.Query;
 
 public class RowChecker {
     public static boolean rowExists(String tableName, String columnName, Object columnValue) {
+//        table name should be entity name eg: Employee not employee from database table
         SessionFactory sessionFactory = InitialSessionFactory.getSessionFactory();
 
         Session session = sessionFactory.openSession();
@@ -27,10 +28,8 @@ public class RowChecker {
             }
         }
         if (rows >= 1) {
-            System.out.println("rows exists");
             isRowExists = true;
         }else{
-            System.out.println("row doesn't exit");
             isRowExists = false;
         }
         return isRowExists;

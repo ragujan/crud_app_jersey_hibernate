@@ -11,6 +11,5 @@ public class ContextListener implements ServletContextListener {
     public void contextInitialized(ServletContextEvent sce){
         ServletContext context = sce.getServletContext();
         context.setAttribute("BASE_URL",context.getContextPath()+"/");
-        System.out.println("context is intializaed");
     }
 }

@@ -14,7 +14,9 @@ public class AddRow {
             session.persist(tableName);
             transaction.commit();
         }finally {
-
+           if(transaction.isActive()){
+               transaction.rollback();
+           }
         }
         return false;
     }

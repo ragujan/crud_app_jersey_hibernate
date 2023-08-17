@@ -68,7 +68,7 @@ const loadDepartmentNames = () => __awaiter(void 0, void 0, void 0, function* ()
             console.log("json object is ", jsonNames[i]["department_name"]);
             const optionTag = document.createElement("option");
             optionTag.innerText = jsonNames[i]["department_name"];
-            optionTag.setAttribute("id", `${jsonNames[i]["department_id"]}`);
+            optionTag.setAttribute("value", `${jsonNames[i]["department_id"]}`);
             selectTag === null || selectTag === void 0 ? void 0 : selectTag.append(optionTag);
         }
     }
@@ -87,7 +87,7 @@ const loadEmployeePositionNames = () => __awaiter(void 0, void 0, void 0, functi
             console.log("json object is ", jsonNames[i]["employee_position_name"]);
             const optionTag = document.createElement("option");
             optionTag.innerText = jsonNames[i]["employee_position_name"];
-            optionTag.setAttribute("id", `${jsonNames[i]["employee_position_id"]}`);
+            optionTag.setAttribute("value", `${jsonNames[i]["employee_position_id"]}`);
             selectTag === null || selectTag === void 0 ? void 0 : selectTag.append(optionTag);
         }
     }
@@ -101,4 +101,26 @@ window.addEventListener('load', () => __awaiter(void 0, void 0, void 0, function
     else {
         console.log("normal");
     }
+}));
+const addEmployee = () => __awaiter(void 0, void 0, void 0, function* () {
+    const fname = document.getElementById("employee_first_name");
+    const lname = document.getElementById("employee_last_name");
+    const posName = document.getElementById("emp_pos_names");
+    const depName = document.getElementById("dep_names");
+    const url = "./employee_entry";
+    if (fname && lname && posName && depName) {
+        const formData = new FormData();
+        formData.append("fname", fname.value);
+        formData.append("lname", lname.value);
+        formData.append("posName", posName.value);
+        formData.append("depName", depName.value);
+        console.log(formData);
+        const response = yield fetch(url, { method: "POST", body: formData });
+        const text = yield response.text();
+        console.log(text);
+    }
+});
+const addEmployeeBtn = document.getElementById("add_employee");
+addEmployeeBtn.addEventListener('click', () => __awaiter(void 0, void 0, void 0, function* () {
+    yield addEmployee();
 }));

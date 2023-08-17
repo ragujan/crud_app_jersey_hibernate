@@ -2,8 +2,6 @@ package com.seblacko.rag.entities;
 
 import jakarta.persistence.*;
 
-import java.time.LocalDateTime;
-
 @Entity
 @Table(name = "employee")
 public class Employee {
@@ -17,7 +15,7 @@ public class Employee {
     private String lastName;
 
     @Column(name = "hire_date")
-    private LocalDateTime hiredDate;
+    private String hiredDate;
 
     @Column(name = "department_id")
     private Integer departmentId;
@@ -52,11 +50,11 @@ public class Employee {
         this.lastName = lastName;
     }
 
-    public LocalDateTime getHiredDate() {
+    public String getHiredDate() {
         return hiredDate;
     }
 
-    public void setHiredDate(LocalDateTime hiredDate) {
+    public void setHiredDate(String hiredDate) {
         this.hiredDate = hiredDate;
     }
 
