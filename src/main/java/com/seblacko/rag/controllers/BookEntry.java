@@ -2,6 +2,7 @@ package com.seblacko.rag.controllers;
 
 
 import com.seblacko.rag.entities.Book;
+import com.seblacko.rag.entities.EmployeePosition;
 import com.seblacko.rag.util.hibernate.InitialSessionFactory;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
@@ -20,6 +21,8 @@ public class BookEntry {
         Book book = new Book();
         book.setName("lor");
         book.setAuthor("ragjn2");
+        EmployeePosition employeePosition = new EmployeePosition();
+        employeePosition.setPositionName("bro rag");
 
         SessionFactory sessionFactory = InitialSessionFactory.getSessionFactory();
         Session session = sessionFactory.openSession();
@@ -29,6 +32,7 @@ public class BookEntry {
         try {
             transaction.begin();
             session.persist(book);
+            session.persist(employeePosition);
             transaction.commit();
         }finally {
             if(transaction.isActive()){

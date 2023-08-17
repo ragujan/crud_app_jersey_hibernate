@@ -18,28 +18,9 @@ public class DepartmentEntry {
     @POST
     public String addDepartment(@FormDataParam("departmentName") String departmentName) {
         if(!StringInputValidator.isValid(departmentName)){
-           return "invalid input";
+           return "invalid input, only letters and numbers are allowed";
         }else{
-            System.out.println("Received department name dep2 : " + departmentName);
-            Book book = new Book();
-            book.setName("lor");
-            book.setAuthor("ragjn2");
-
-            SessionFactory sessionFactory = InitialSessionFactory.getSessionFactory();
-            Session session = sessionFactory.openSession();
-
-            Transaction transaction = session.getTransaction();
-
-            try {
-                transaction.begin();
-                session.persist(book);
-                transaction.commit();
-            }finally {
-                if(transaction.isActive()){
-                    transaction.rollback();
-                }
-                session.close();
-            }
+            System.out.println("Received department name: " + departmentName);
             if(RowChecker.rowExists("Department","name",departmentName)){
                 return "name already exists";
             }else{

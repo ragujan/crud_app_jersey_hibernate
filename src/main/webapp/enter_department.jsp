@@ -14,6 +14,6 @@
 <h1>Add a department</h1>
 <input  type="text" id="department_name">
 <button id="add">add department</button>
-<script src="scripts/department_entry2.js"></script>
+<script   src="scripts/entry.js"></script>
 </body>
 </html>

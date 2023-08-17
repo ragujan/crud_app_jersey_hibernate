@@ -10,5 +10,8 @@
         <property name="current_session_context_class">thread</property>
         <mapping class="com.seblacko.rag.entities.Book"/>
         <mapping class="com.seblacko.rag.entities.Department"/>
+        <mapping class="com.seblacko.rag.entities.EmployeePosition"/>
+        <mapping class="com.seblacko.rag.entities.Employee"/>
+
     </session-factory>
 </hibernate-configuration>
