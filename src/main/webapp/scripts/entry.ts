@@ -131,4 +131,5 @@ const addEmployeeBtn = document.getElementById("add_employee") as HTMLButtonElem
 addEmployeeBtn!.addEventListener('click',async  ()=>{
     await addEmployee();
 })
+
 export {}

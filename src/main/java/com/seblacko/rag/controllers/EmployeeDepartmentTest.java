@@ -34,7 +34,6 @@ public class EmployeeDepartmentTest {
         employee.setFirstName("f_name");
         employee.setLastName("l_name");
         employee.setEmployeePosition(employeePosition);
-//        employee.setEmployeePositionId(3);
         employee.setHiredDate(formattedDateTime);
         employee.setDepartment(department);
         try {

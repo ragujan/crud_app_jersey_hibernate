@@ -18,4 +18,12 @@ public class LoadTable {
         List<Object[]> resultList = query.getResultList();
         return resultList;
     }
+    public static List<Object[]> loadMultiple(String tableName){
+        SessionFactory factory = InitialSessionFactory.getSessionFactory();
+        Session session = factory.openSession();
+        String hql = "from "+tableName;
+        Query query =  session.createQuery(hql,Object[].class);
+        List<Object[]> resultList = query.getResultList();
+        return resultList;
+    }
 }
