@@ -44,18 +44,24 @@ const loadAllEmployees = async () => {
             editBtn.innerText = "edit"
             // editBtn.onclick = setItemsForEdit(id,fname,lname,deparment, position);
             editBtn.onclick = function () {
-                setItemsForEdit(id,email, fname, lname, deparment_id, position_id);
+                setItemsForEdit(id, email, fname, lname, deparment_id, position_id);
             };
             td[7].appendChild(editBtn);
             tRow.appendChild(td[7]);
 
             let deleteBtn = document.createElement("button");
             deleteBtn.innerText = "delete"
+            deleteBtn.onclick = function () {
+                deleteEmployee(email);
+            }
             td[8].appendChild(deleteBtn);
             tRow.appendChild(td[8]);
 
             let paySalary = document.createElement("button");
             paySalary.innerText = "salary"
+            paySalary.onclick =  ()=>{
+                window.location.href = "./employee_salary?email="+email;
+            }
             td[9].appendChild(paySalary);
             tRow.appendChild(td[9]);
             tBody.appendChild(tRow);
@@ -103,7 +109,7 @@ const loadDepartmentNames = async (selectTag: HTMLSelectElement, department: str
     }
 }
 
-const setItemsForEdit = async (id: string,email:string, fname: string, lname: string, department: string, position: string) => {
+const setItemsForEdit = async (id: string, email: string, fname: string, lname: string, department: string, position: string) => {
     const html = ` <span>Employee email</span>
     <input type="text" value="${email}" id="employee_email">
     <br>   
@@ -141,8 +147,8 @@ const updateEmployee = async () => {
     const departmentName = document.getElementById("dep_names") as HTMLSelectElement;
     const positionName = document.getElementById("emp_pos_names") as HTMLSelectElement;
     const url = './update_employee';
-    if (fname && lname && departmentName && positionName&& email) {
-        console.log("everything is fine and everthing will be fine ")
+    if (fname && lname && departmentName && positionName && email) {
+        // console.log("everything is fine and everthing will be fine ")
         const formData = new FormData();
         formData.append("email", email.value);
         formData.append("fname", fname.value);
@@ -155,14 +161,28 @@ const updateEmployee = async () => {
         console.log(text);
     }
 }
-const updateBtn = document.getElementById("update_btn") as HTMLButtonElement | null;
+const deleteEmployee = async (email: string) => {
+    const url = './delete_employee';
+    if (email) {
+        // console.log("everything is fine and everthing will be fine ")
+        const formData = new FormData();
+        formData.append("email", email);
+        const response = await fetch(url, {method: "DELETE", body: formData});
+        const text = await response.text();
+        console.log(text);
+        if(text.toLocaleLowerCase() === "ok"){
+            const tBody = document.getElementById("tbody") as HTMLTableSectionElement | null;
 
-// if (updateBtn) {
-//     console.log("bro")
-//     updateBtn.addEventListener('click', async () => {
-//         await updateEmployee();
-//     })
-// }
+            if (tBody) {
+                const newTbody = document.createElement("tbody");
+                newTbody.setAttribute("id","tbody");
+                tBody.parentNode?.replaceChild(newTbody, tBody);
+            }
+            loadAllEmployees();
+        }
+    }
+}
+const updateBtn = document.getElementById("update_btn") as HTMLButtonElement | null;
 
 window.addEventListener('load', async () => {
     await loadAllEmployees();

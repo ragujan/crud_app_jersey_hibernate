@@ -17,6 +17,8 @@
 <br>
 <a href="${BASE_URL}enter_employee_position">Enter Employee Position</a>
 <br>
-<a href="${BASE_URL}view_employees">View Employess</a>
+<a href="${BASE_URL}view_employees">View Employees</a>
+<br>
+<a href="${BASE_URL}employee_salary">Employee Salary</a>
 </body>
 </html>

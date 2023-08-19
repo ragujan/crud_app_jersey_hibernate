@@ -37,4 +37,9 @@ public class AdminHome {
         System.out.println("view_employees");
         return new Viewable("/view_employees");
     }
+    @GET
+    @Path("employee_salary")
+    public Viewable view_salary(){
+        return new Viewable("/employee_salary");
+    }
 }

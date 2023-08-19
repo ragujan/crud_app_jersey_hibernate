@@ -7,11 +7,12 @@ import com.seblacko.rag.entities.Department;
 import com.seblacko.rag.entities.Employee;
 import com.seblacko.rag.entities.EmployeePosition;
 import com.seblacko.rag.util.InputValidator;
-import com.seblacko.rag.util.hibernate.AddRow;
-import com.seblacko.rag.util.hibernate.LoadTable;
-import com.seblacko.rag.util.hibernate.RowChecker;
-import com.seblacko.rag.util.hibernate.UpdateRow;
+import com.seblacko.rag.util.hibernate.*;
 import jakarta.ws.rs.*;
+import org.glassfish.jersey.server.mvc.Viewable;
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -125,4 +126,31 @@ public class EmployeeController {
         }
 
     }
+
+    @DELETE
+    @Path("/delete_employee")
+    public String delete(@FormParam("email") String email) {
+        if (!InputValidator.inputEmailIsValid(email) || !RowChecker.rowExists("Employee", "email", email)) {
+            return "email does not exists or invalid";
+        } else {
+            Employee employee = RowChecker.getEntityByColumn(Employee.class, "email", email);
+            System.out.println("email is "+employee.getEmail());
+            System.out.println("email is "+employee.getFirstName());
+            System.out.println("email is "+employee.getLastName());
+            System.out.println("email is "+employee.getHiredDate());
+            SessionFactory sessionFactory = InitialSessionFactory.getSessionFactory();
+            Session session = sessionFactory.openSession();
+            try {
+//                DeleteRow.delete(employee);
+                session.beginTransaction();
+                session.delete(employee);
+                session.getTransaction().commit();
+            }catch (HibernateException ex){
+
+            }
+//            DeleteRow.delete(employee);
+            return "ok";
+        }
+    }
+
 }

@@ -58,10 +58,16 @@ const loadAllEmployees = () => __awaiter(void 0, void 0, void 0, function* () {
             tRow.appendChild(td[7]);
             let deleteBtn = document.createElement("button");
             deleteBtn.innerText = "delete";
+            deleteBtn.onclick = function () {
+                deleteEmployee(email);
+            };
             td[8].appendChild(deleteBtn);
             tRow.appendChild(td[8]);
             let paySalary = document.createElement("button");
             paySalary.innerText = "salary";
+            paySalary.onclick = () => {
+                window.location.href = "./employee_salary?email=" + email;
+            };
             td[9].appendChild(paySalary);
             tRow.appendChild(td[9]);
             tBody.appendChild(tRow);
@@ -138,7 +144,7 @@ const updateEmployee = () => __awaiter(void 0, void 0, void 0, function* () {
     const positionName = document.getElementById("emp_pos_names");
     const url = './update_employee';
     if (fname && lname && departmentName && positionName && email) {
-        console.log("everything is fine and everthing will be fine ");
+        // console.log("everything is fine and everthing will be fine ")
         const formData = new FormData();
         formData.append("email", email.value);
         formData.append("fname", fname.value);
@@ -150,13 +156,28 @@ const updateEmployee = () => __awaiter(void 0, void 0, void 0, function* () {
         console.log(text);
     }
 });
+const deleteEmployee = (email) => __awaiter(void 0, void 0, void 0, function* () {
+    var _a;
+    const url = './delete_employee';
+    if (email) {
+        // console.log("everything is fine and everthing will be fine ")
+        const formData = new FormData();
+        formData.append("email", email);
+        const response = yield fetch(url, { method: "DELETE", body: formData });
+        const text = yield response.text();
+        console.log(text);
+        if (text.toLocaleLowerCase() === "ok") {
+            const tBody = document.getElementById("tbody");
+            if (tBody) {
+                const newTbody = document.createElement("tbody");
+                newTbody.setAttribute("id", "tbody");
+                (_a = tBody.parentNode) === null || _a === void 0 ? void 0 : _a.replaceChild(newTbody, tBody);
+            }
+            loadAllEmployees();
+        }
+    }
+});
 const updateBtn = document.getElementById("update_btn");
-// if (updateBtn) {
-//     console.log("bro")
-//     updateBtn.addEventListener('click', async () => {
-//         await updateEmployee();
-//     })
-// }
 window.addEventListener('load', () => __awaiter(void 0, void 0, void 0, function* () {
     yield loadAllEmployees();
 }));

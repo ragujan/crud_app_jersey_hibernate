@@ -7,6 +7,7 @@ public class InputValidator {
     private static final Pattern SPECIAL_CHAR_PATTERN = Pattern.compile("[^a-zA-Z0-9\\s]");
     private static final Pattern NUMBER_PATTERN = Pattern.compile("^[0-9]+$");
     private static final Pattern EMAIL_PATTERN = Pattern.compile( "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
+    private static final Pattern PRICE_PATTERN = Pattern.compile( "^\\d{0,8}(\\.\\d{1,4})?$", Pattern.CASE_INSENSITIVE);
     public static boolean inputTextIsValid(String input) {
         return input != null && !input.isEmpty() && !containsSpecialCharacters(input);
     }
@@ -15,6 +16,9 @@ public class InputValidator {
     }
     public static boolean inputEmailIsValid(String email){
         return email != null && !email.isEmpty() && isEmail(email);
+    }
+    public static boolean inputPriceIsValid(String price){
+        return price != null && !price.isEmpty() && isPrice(price);
     }
     private static boolean containsSpecialCharacters(String input) {
         Matcher matcher = SPECIAL_CHAR_PATTERN.matcher(input);
@@ -28,10 +32,15 @@ public class InputValidator {
         Matcher matcher = EMAIL_PATTERN.matcher(input);
         return matcher.matches();
     }
+    private static boolean isPrice(String input){
+        Matcher matcher = PRICE_PATTERN.matcher(input);
+        return matcher.matches();
+    }
     public static String sanitize(String input) {
         if (input == null) {
             return "";
         }
         return input.replaceAll("[^a-zA-Z0-9]", "");
     }
+
 }

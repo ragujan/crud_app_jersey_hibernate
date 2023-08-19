@@ -25,14 +25,14 @@ public class Employee {
 //    @Column(name = "employee_position_id")
 //    private Integer employeePositionId;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "employee")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "employee",cascade = CascadeType.REMOVE)
     private Set<EmployeeSalary> employeeSalary = new HashSet<>();
     //department entity
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "department_id")
     private Department department;
     //employee position entity
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "employee_position_id")
     private EmployeePosition employeePosition;
 
