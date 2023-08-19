@@ -10,8 +10,8 @@ public class AppConfig extends ResourceConfig {
         packages(PackageGrabber.CONTROLLERS);
         packages(PackageGrabber.MIDDLEWARES);
 //        register(MultiPartFeature.class);
-        register(DependencyBinder.class);
         register(JspMvcFeature.class);
         property(JspMvcFeature.TEMPLATE_BASE_PATH,"/WEB-INF/Views");
+        register(DependencyBinder.class);
     }
 }
