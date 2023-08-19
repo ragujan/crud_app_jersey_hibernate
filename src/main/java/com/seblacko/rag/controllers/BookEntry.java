@@ -2,8 +2,11 @@ package com.seblacko.rag.controllers;
 
 
 import com.seblacko.rag.entities.Book;
+import com.seblacko.rag.entities.Employee;
 import com.seblacko.rag.entities.EmployeePosition;
 import com.seblacko.rag.util.hibernate.InitialSessionFactory;
+import com.seblacko.rag.util.hibernate.RowChecker;
+import com.seblacko.rag.util.hibernate.UpdateRow;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
@@ -16,14 +19,15 @@ import org.hibernate.Transaction;
 public class BookEntry {
     @GET
     @Produces(MediaType.TEXT_HTML)
-    public String enter(){
+    public String enter() {
+//        UpdateRow.update();
 
-//        Book book = new Book();
-//        book.setName("lor");
-//        book.setAuthor("ragjn2");
-//        EmployeePosition employeePosition = new EmployeePosition();
-//        employeePosition.setPositionName("bro rag");
-//
+        Book book = RowChecker.getEntityByColumn(Book.class,"name","lor");
+        book.setName("lor222");
+        book.setAuthor("book id 4");
+        UpdateRow.update(book);
+        Employee employee = new Employee();
+
 //        SessionFactory sessionFactory = InitialSessionFactory.getSessionFactory();
 //        Session session = sessionFactory.openSession();
 //
@@ -31,8 +35,7 @@ public class BookEntry {
 //
 //        try {
 //            transaction.begin();
-//            session.persist(book);
-//            session.persist(employeePosition);
+//            session.update(book);
 //            transaction.commit();
 //        }finally {
 //            if(transaction.isActive()){

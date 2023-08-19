@@ -106,6 +106,7 @@ window.addEventListener('load', async () => {
 })
 
 const addEmployee = async () => {
+    const email = document.getElementById("email") as HTMLInputElement;
     const fname = document.getElementById("employee_first_name") as HTMLInputElement;
     const lname  = document.getElementById("employee_last_name") as HTMLInputElement;
     const posName = document.getElementById("emp_pos_names") as HTMLSelectElement;
@@ -113,8 +114,9 @@ const addEmployee = async () => {
     const url = "./employee_entry";
 
 
-    if (fname && lname && posName && depName) {
+    if (fname && lname && posName && depName && email) {
         const formData = new FormData();
+        formData.append("email", email.value);
         formData.append("fname", fname.value);
         formData.append("lname", lname.value);
         formData.append("posName", posName.value);

@@ -12,6 +12,9 @@
 </head>
 <body>
 <h1>Add an employee</h1>
+<span>Email</span>
+<input type="text" id="email">
+<br>
 <span>Employee first name</span>
 <input type="text" id="employee_first_name">
 <br>

@@ -23,6 +23,7 @@
     <th>id</th>
     <th>f_name</th>
     <th>l_name</th>
+    <th>email</th>
     <th>hired_at</th>
     <th>depatment</th>
     <th>position</th>
@@ -35,23 +36,23 @@
     </tbody>
 </table>
 <div id="edit_section">
-    <span>Employee first name</span>
-    <input type="text" id="employee_first_name">
-    <br>
-    <span>Employee last name</span>
-    <input type="text" id="employee_last_name">
-    <br>
-    <span>Employee last name</span>
-    <br>
-    <span>Department Name</span>
-    <%--department names should  be the select tag--%>
-    <select id="dep_names"></select>
+<%--    <span>Employee first name</span>--%>
+<%--    <input type="text" id="employee_first_name">--%>
+<%--    <br>--%>
+<%--    <span>Employee last name</span>--%>
+<%--    <input type="text" id="employee_last_name">--%>
+<%--    <br>--%>
+<%--    <span>Employee last name</span>--%>
+<%--    <br>--%>
+<%--    <span>Department Name</span>--%>
+<%--    &lt;%&ndash;department names should  be the select tag&ndash;%&gt;--%>
+<%--    <select id="dep_names"></select>--%>
 
-    <span>Employee position Name</span>
-    <%--department names should  be the select tag--%>
-    <select id="emp_pos_names"></select>
-    <br>
-    <button>Update</button>
+<%--    <span>Employee position Name</span>--%>
+<%--    &lt;%&ndash;department names should  be the select tag&ndash;%&gt;--%>
+<%--    <select id="emp_pos_names"></select>--%>
+<%--    <br>--%>
+<%--    <button id="update_btn">Update</button>--%>
 </div>
 <script>var exports = {};</script>
 <script src="${BASE_URL}scripts/view_employees.js"></script>

@@ -34,4 +34,14 @@ public class RowChecker {
         }
         return isRowExists;
     }
+    public static <T>T getEntityByColumn(Class<T> entity, String columnName, Object value){
+        SessionFactory sessionFactory = InitialSessionFactory.getSessionFactory();
+        Session session = sessionFactory.openSession();
+        String hql = "from "+entity.getName()+" as tb where tb."+columnName+" =:value";
+        Query<T> query = session.createQuery(hql);
+        query.setParameter("value",value);
+        T tb = query.uniqueResult();
+        session.close();
+        return tb;
+    }
 }

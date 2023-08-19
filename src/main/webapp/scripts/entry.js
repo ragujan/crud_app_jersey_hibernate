@@ -103,13 +103,15 @@ window.addEventListener('load', () => __awaiter(void 0, void 0, void 0, function
     }
 }));
 const addEmployee = () => __awaiter(void 0, void 0, void 0, function* () {
+    const email = document.getElementById("email");
     const fname = document.getElementById("employee_first_name");
     const lname = document.getElementById("employee_last_name");
     const posName = document.getElementById("emp_pos_names");
     const depName = document.getElementById("dep_names");
     const url = "./employee_entry";
-    if (fname && lname && posName && depName) {
+    if (fname && lname && posName && depName && email) {
         const formData = new FormData();
+        formData.append("email", email.value);
         formData.append("fname", fname.value);
         formData.append("lname", lname.value);
         formData.append("posName", posName.value);
