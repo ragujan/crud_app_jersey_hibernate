@@ -24,12 +24,8 @@ public class AdminController {
 
     @Path("/admin_auth")
     @POST
-    @Consumes(MediaType.APPLICATION_JSON)
-//    public String adminLogin(@FormParam("email") String email, @FormParam("password") String password) {
-        public String adminLogin(AdminAuthDTO dto) {
+    public String adminLogin(@FormParam("email") String email, @FormParam("password") String password) {
         System.out.println("hey admin auth request here");
-        String email = dto.getEmail();
-        String password =dto.getAdminPassword();
         if (email.equals(Admin.getEmail()) && password.equals(Admin.getPassword())) {
             UserDetails userDetails = userService.getAdminByEmailPassword(email, password);
             String token = tokenUtil.generateAccessToken(userDetails);

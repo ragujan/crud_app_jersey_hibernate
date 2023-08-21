@@ -2,11 +2,11 @@ const login = async () => {
     const email = document.getElementById("email") as HTMLInputElement;
     const password = document.getElementById("password") as HTMLInputElement;
 
-    // let formData = new FormData();
-    // formData.append("email","admin@gmail.com");
-    // formData.append("password", "123");
-    // console.log("check function")
-    let formData :string = JSON.stringify({email:email.value,password:password.value})
+    let formData = new FormData();
+    formData.append("email","admin@gmail.com");
+    formData.append("password", "123");
+    console.log("check function")
+    // let formData :string = JSON.stringify({email:email.value,password:password.value})
     let url = "./admin_auth";
     let response = await fetch(url,{body:formData,method:"POST"})
     let text = await response.text();

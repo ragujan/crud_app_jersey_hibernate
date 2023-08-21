@@ -11,11 +11,11 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 const login = () => __awaiter(void 0, void 0, void 0, function* () {
     const email = document.getElementById("email");
     const password = document.getElementById("password");
-    // let formData = new FormData();
-    // formData.append("email","admin@gmail.com");
-    // formData.append("password", "123");
-    // console.log("check function")
-    let formData = JSON.stringify({ email: email.value, password: password.value });
+    let formData = new FormData();
+    formData.append("email", "admin@gmail.com");
+    formData.append("password", "123");
+    console.log("check function");
+    // let formData :string = JSON.stringify({email:email.value,password:password.value})
     let url = "./admin_auth";
     let response = yield fetch(url, { body: formData, method: "POST" });
     let text = yield response.text();
