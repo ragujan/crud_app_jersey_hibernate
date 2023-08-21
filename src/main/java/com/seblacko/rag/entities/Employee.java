@@ -28,11 +28,11 @@ public class Employee {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "employee",cascade = CascadeType.REMOVE)
     private Set<EmployeeSalary> employeeSalary = new HashSet<>();
     //department entity
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "department_id")
     private Department department;
     //employee position entity
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "employee_position_id")
     private EmployeePosition employeePosition;
 

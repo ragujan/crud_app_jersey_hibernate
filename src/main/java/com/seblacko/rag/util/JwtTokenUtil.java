@@ -17,6 +17,7 @@ public class JwtTokenUtil {
     private static final String CLAIM_KEY_CREATED = "created";
     private static final String ISSUER = "crud_app";
     private static final String SECRET = "Z2N2GDy(U_/q[13?3F8,$QQ+2t6+V2";
+    private static final String TYPE = "user-type";
     private static final Long TOKEN_LIFE = 5L;
     private static final Long REFRESH_TOKEN_LIFE = 43200L;
 
@@ -26,7 +27,7 @@ public class JwtTokenUtil {
         JWT jwt = new JWT().setIssuer(ISSUER).setIssuedAt(ZonedDateTime.now(ZoneOffset.UTC))
                 .setSubject(subject)
                 .setExpiration(ZonedDateTime.now(ZoneOffset.UTC)
-                        .plusMinutes(TOKEN_LIFE));
+                    .plusMinutes(expiration));
         claims.keySet().forEach(k->{
             if(claims.get(k) != null){
                 jwt.addClaim(k,claims.get(k));
@@ -38,6 +39,7 @@ public class JwtTokenUtil {
         Map<String,String> claims = new HashMap<>();
         claims.put(CLAIM_KEY_USERNAME, userDetails.getEmail());
         claims.put(CLAIM_KEY_CREATED,new Date().toString());
+        claims.put(TYPE,userDetails.getType());
 
         return generateToken(claims,TOKEN_LIFE,userDetails.getEmail());
     }
@@ -76,6 +78,7 @@ public class JwtTokenUtil {
         Map<String,String> claims = new HashMap<>();
         claims.put(CLAIM_KEY_USERNAME,userDetails.getEmail());
         claims.put(CLAIM_KEY_CREATED,new Date().toString());
+        claims.put(TYPE,userDetails.getType());
         return generateToken(claims,REFRESH_TOKEN_LIFE,userDetails.getEmail());
     }
 

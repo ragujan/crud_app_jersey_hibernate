@@ -3,6 +3,7 @@ package com.seblacko.rag.dtos;
 public class AuthResponseDTO {
     private String accessToken;
 
+
     public AuthResponseDTO() {
     }
 

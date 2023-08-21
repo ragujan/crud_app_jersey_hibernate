@@ -20,5 +20,6 @@
 <a href="${BASE_URL}view_employees">View Employees</a>
 <br>
 <a href="${BASE_URL}employee_salary">Employee Salary</a>
+
 </body>
 </html>

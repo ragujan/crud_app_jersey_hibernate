@@ -1,6 +1,9 @@
 package com.seblacko.rag.controllers;
 
-import com.seblacko.rag.dtos.AuthResponseDTO;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ArrayNode;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.seblacko.rag.dtos.AdminAuthDTO;
 import com.seblacko.rag.services.Admin;
 import com.seblacko.rag.services.UserService;
 import com.seblacko.rag.util.JwtTokenUtil;
@@ -8,7 +11,6 @@ import com.seblacko.rag.util.UserDetails;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
-import jakarta.ws.rs.core.Response;
 import org.glassfish.jersey.server.mvc.Viewable;
 
 import java.util.Date;
@@ -22,22 +24,31 @@ public class AdminController {
 
     @Path("/admin_auth")
     @POST
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response adminLogin(@FormParam("email") String email, @FormParam("password") String password) {
+    @Consumes(MediaType.APPLICATION_JSON)
+//    public String adminLogin(@FormParam("email") String email, @FormParam("password") String password) {
+        public String adminLogin(AdminAuthDTO dto) {
+        System.out.println("hey admin auth request here");
+        String email = dto.getEmail();
+        String password =dto.getAdminPassword();
         if (email.equals(Admin.getEmail()) && password.equals(Admin.getPassword())) {
-            UserDetails userDetails = userService.getAdminByEmail(email, password);
+            UserDetails userDetails = userService.getAdminByEmailPassword(email, password);
             String token = tokenUtil.generateAccessToken(userDetails);
             Date expireDate = tokenUtil.getExpiredDateFromToken(token);
             String refreshToken = tokenUtil.generateRefreshToken(userDetails);
+            ObjectMapper mapper = new ObjectMapper();
+            ArrayNode jsonArray = mapper.createArrayNode();
+            ObjectNode jsonObject = mapper.createObjectNode();
 
-            AuthResponseDTO dto = new AuthResponseDTO();
-            dto.setAccessToken(token);
-            dto.setExpireIn(expireDate.toString());
-            dto.setRefreshToken(refreshToken);
-            return Response.ok().entity(dto).build();
+            jsonObject.put("token",token);
+            jsonObject.put("refresh_token",refreshToken);
+            jsonObject.put("expireDate",expireDate.toString());
+
+            jsonArray.add(jsonObject);
+
+            return jsonArray.toString();
 
         } else {
-            return Response.ok().entity("not authorized").build();
+            return "invalid credentials";
         }
     }
 

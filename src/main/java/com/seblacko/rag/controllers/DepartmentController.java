@@ -3,14 +3,14 @@ package com.seblacko.rag.controllers;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.seblacko.rag.dtos.DepartmentEntryDTO;
 import com.seblacko.rag.entities.Department;
 import com.seblacko.rag.util.InputValidator;
 import com.seblacko.rag.util.hibernate.AddRow;
 import com.seblacko.rag.util.hibernate.LoadTable;
 import com.seblacko.rag.util.hibernate.RowChecker;
-import jakarta.ws.rs.GET;
-import jakarta.ws.rs.POST;
-import jakarta.ws.rs.Path;
+import jakarta.ws.rs.*;
+import jakarta.ws.rs.core.MediaType;
 import org.glassfish.jersey.media.multipart.FormDataParam;
 
 import java.util.List;
@@ -19,7 +19,7 @@ import java.util.List;
 public class DepartmentController {
     @POST
     @Path("/department_entry")
-    public String addDepartment(@FormDataParam("departmentName") String departmentName) {
+    public String addDepartment(@FormParam("departmentName") String departmentName) {
         if (!InputValidator.inputTextIsValid(departmentName)) {
             return "invalid input, only letters and numbers are allowed";
         } else {
@@ -34,6 +34,8 @@ public class DepartmentController {
         }
 
     }
+
+
 
     @GET
     @Path("/get_department_names")
